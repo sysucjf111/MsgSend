@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>短信发送</title>
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+</head>
+<body>
+    手机号：<input type="text" id="phone"> <br>
+    次数：<input type="text" id="number"> <br>
+    <button id="submit">开始发信</button><br>
+    <div id="showResult">
+
+    </div>
+    <div id="showResult2"></div>
+</body>
+
+<script>
+    $(function(){
+        $("#submit").click(function () {
+            var page = "/greeting";
+            var phone = $("#phone").val();
+            var number = $("#number").val();
+            var getRes;
+            $.post(
+                page,
+                {"phone":phone,"number":number},
+                function (result){
+                    getRes = result;
+
+                    // $("#showResult2").html("测试")
+                    $("#showResult").html(JSON.stringify(getRes));
+                }
+            );
+
+        });
+    });
+
+</script>
+</html>
